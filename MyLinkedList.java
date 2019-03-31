@@ -1,5 +1,4 @@
 public class MyLinkedList<E>{
- private int size;
  private Node start,end;
 
  public MyLinkedList(){
@@ -17,7 +16,6 @@ public class MyLinkedList<E>{
      //if tis the first value, set it as the start too
      start = end;
    }
-   size++;
    return true;
  }
  private Node prevNode(int index){
@@ -55,16 +53,17 @@ public class MyLinkedList<E>{
  }
 
  public E removeFront(){
-   size--;
    Node temp = start;
    start = start.next();
-   return temp.get();
+   return (E) temp.get();
  }
  public void clear(){
    //clears the linkedlist
-   size = 0;
    start = null;
    end = null;
+ }
+ public Node end(){
+   return end;
  }
  public void extend(MyLinkedList<E> other){
         //in O(1) runtime, move the elements from other onto the end of this
@@ -74,18 +73,16 @@ public class MyLinkedList<E>{
           end.setNext(other.start);
           other.start.setPrev(end);
           end = other.end();
-          size = size() + other.size();
         }
         other.clear(); //uses helper to clear other list
     }
   public static void main(String[] args) {
-    MyLinkedList<Integer> a = new MyLinkedList<Integer>();
-    a.add(0);
-    a.add(1);
-    a.add(2);
-    a.add(3);
+    MyLinkedList<String> a = new MyLinkedList<String>();
+    a.add("a");
+    a.add("b");
+    a.add("c");
+    a.add("d");
     System.out.println(a);
-    System.out.println(a.size());
     System.out.println(a.removeFront());
     System.out.println(a);
   }
@@ -113,7 +110,7 @@ public class MyLinkedList<E>{
   public String toString(){ //turns data into a string
     return "" + data;
   }
-  public void set(Integer value){ //setter for data
+  public void set(E value){ //setter for data
     data = value;
   }
   public E get(){ //getter for data
