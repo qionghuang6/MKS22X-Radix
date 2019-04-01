@@ -1,12 +1,14 @@
 import java.util.*;
 public class MyLinkedList<E>{
  private Node start,end;
-
+ private int size;
  public MyLinkedList(){
    //sets up instance variables, start and end dont exist yet
+   int size = 0;
    clear();
  }
  public boolean add(E value){
+   size++;
    //temporarily holds old end
    Node oldEnd = end;
    end = new Node(value, null, oldEnd);
@@ -20,6 +22,7 @@ public class MyLinkedList<E>{
    return true;
  }
  public boolean addFront(E value){
+   size++;
    Node oldStart = start;
    start = new Node(value,oldStart,null);
    if(oldStart != null){
@@ -29,7 +32,23 @@ public class MyLinkedList<E>{
    }
    return true;
  }
- private Node prevNode(int index){
+ public E[] toArray(){
+  // System.out.println(size);
+   E[] arr = (E[]) new Object[size];
+   int i = 0;
+   Node pointer = start;
+   while(pointer != null){
+     arr[i] = (E) pointer.get();
+     pointer = pointer.next();
+     i++;
+   }
+   return arr;
+ }
+ public int size()
+{
+  return size;
+}
+private Node prevNode(int index){
    //helper to look for the previous node
    if(index <= 0){
      return null;
@@ -47,6 +66,7 @@ public class MyLinkedList<E>{
   return current;
 }
  public String toString(){
+   //System.out.println(size);
    //creates string with bracket
    String ret = "[";
    Node current = start;
@@ -67,6 +87,7 @@ public class MyLinkedList<E>{
    if(start == null){
      throw new NoSuchElementException();
    }
+   size--;
    Node temp = start;
    start = start.next();
    return (E) temp.get();
@@ -75,6 +96,7 @@ public class MyLinkedList<E>{
    //clears the linkedlist
    start = null;
    end = null;
+   size = 0;
  }
  public Node end(){
    return end;
@@ -83,6 +105,7 @@ public class MyLinkedList<E>{
         //in O(1) runtime, move the elements from other onto the end of this
         //The size of other is reduced to 0
         //The size of this is now the combined sizes of both original lists
+        size += other.size();
         if(other.start != null){
           end.setNext(other.start);
           other.start.setPrev(end);
@@ -92,6 +115,9 @@ public class MyLinkedList<E>{
     }
   public static void main(String[] args) {
     MyLinkedList<String> a = new MyLinkedList<String>();
+    MyLinkedList<String> b = new MyLinkedList<String>();
+    b.add("1");
+    b.add("2");
     a.add("a");
     a.add("b");
     a.add("c");
@@ -101,10 +127,16 @@ public class MyLinkedList<E>{
     System.out.println(a);
     a.addFront("z");
     System.out.println(a);
+    /*
     for(int x = 0; x < 5; x++){
         a.removeFront();
     }
+    */
     System.out.println(a);
+    System.out.println(Arrays.toString(a.toArray()));
+    a.extend(b);
+    System.out.println(a);
+    System.out.println(Arrays.toString(a.toArray()));
   }
  private class Node<E>{
   private E data;
