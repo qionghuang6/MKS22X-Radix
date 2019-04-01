@@ -107,6 +107,7 @@ private Node prevNode(int index){
         //The size of this is now the combined sizes of both original lists
         size += other.size();
         if(other.start != null){
+          System.out.println(other.start);
           end.setNext(other.start);
           other.start.setPrev(end);
           end = other.end();
