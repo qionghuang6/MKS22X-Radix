@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyLinkedList<E>{
  private Node start,end;
 
@@ -14,6 +15,16 @@ public class MyLinkedList<E>{
      oldEnd.setNext(end);
    } else{
      //if tis the first value, set it as the start too
+     start = end;
+   }
+   return true;
+ }
+ public boolean addFront(E value){
+   Node oldStart = start;
+   start = new Node(value,oldStart,null);
+   if(oldStart != null){
+     oldStart.setPrev(start);
+   }else{
      start = end;
    }
    return true;
@@ -53,6 +64,9 @@ public class MyLinkedList<E>{
  }
 
  public E removeFront(){
+   if(start == null){
+     throw new NoSuchElementException();
+   }
    Node temp = start;
    start = start.next();
    return (E) temp.get();
@@ -84,6 +98,12 @@ public class MyLinkedList<E>{
     a.add("d");
     System.out.println(a);
     System.out.println(a.removeFront());
+    System.out.println(a);
+    a.addFront("z");
+    System.out.println(a);
+    for(int x = 0; x < 5; x++){
+        a.removeFront();
+    }
     System.out.println(a);
   }
  private class Node<E>{
