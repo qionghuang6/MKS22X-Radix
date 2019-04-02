@@ -28,7 +28,7 @@ public class MyLinkedList<E>{
    if(oldStart != null){
      oldStart.setPrev(start);
    }else{
-     start = end;
+     end = start;
    }
    return true;
  }

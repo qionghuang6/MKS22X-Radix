@@ -11,6 +11,7 @@ public class Radix{
       completed = true;
       for(int num: data){
         int index = (Math.abs(num) % (10 * place)) / place;
+        System.out.println(index);
         //System.out.println("INDEX" + index);
         if(num < 0){
           buckets[index].addFront(num);
@@ -21,6 +22,7 @@ public class Radix{
           completed = false;
         }
       }
+      System.out.println(Arrays.toString(buckets));
       MyLinkedList<Integer> newData= new MyLinkedList();
       for (MyLinkedList<Integer> buc: buckets ) {
         newData.extend(buc);
