@@ -84,6 +84,7 @@ private Node prevNode(int index){
  }
 
  public E removeFront(){
+   //System.out.println(this);
    if(start == null){
      throw new NoSuchElementException();
    }
@@ -105,13 +106,18 @@ private Node prevNode(int index){
         //in O(1) runtime, move the elements from other onto the end of this
         //The size of other is reduced to 0
         //The size of this is now the combined sizes of both original lists
-        size += other.size();
-        if(other.start != null){
-          System.out.println(other.start);
+        if(other.start != null && size >= 1){
           end.setNext(other.start);
           other.start.setPrev(end);
           end = other.end();
+        } else if(start == null){
+          start = other.start;
+          end = other.end();
+        } else if(end == null){
+          start.setNext(other.start);
+          end = other.end();
         }
+        size += other.size();
         other.clear(); //uses helper to clear other list
     }
   public static void main(String[] args) {
