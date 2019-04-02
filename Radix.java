@@ -40,6 +40,7 @@ public class Radix{
         }
       }
       place *= 10;
+        System.out.println(newData);
     }
     for (int x = 0;x < data.length ;x++ ) {
       data[x] = newData.removeFront();
@@ -51,7 +52,7 @@ public class Radix{
     for (int x = 0;x < 25 ;x++ ) {
       a[x] = (int) (Math.random() * 1000);
     } */
-    int[] a = {5,54,32,56,12,-12, 56, -3, 34 ,-56};
+    int[] a = {5,524,312,12332,5126,0,-312, 536, -3, 3234 ,-56, 100};
     System.out.println(Arrays.toString(a));
     radixsort(a);
     System.out.println(Arrays.toString(a));
