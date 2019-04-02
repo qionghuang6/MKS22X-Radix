@@ -16,15 +16,12 @@ public class Radix{
       for(int a = 0; a < data.length; a++){
         int num = newData.removeFront();
         int index = (Math.abs(num) % (10 * place)) / place;
-        if(num < 0){
-          buckets[index].addFront(num);
-        } else{
           buckets[index].add(num);
-        }
-        if(num / place > 10){
+        if(Math.abs(num) / place > 10){
           completed = false;
         }
       }
+      newData.clear();
       for (MyLinkedList<Integer> buc: buckets ) {
         if(!completed){
           newData.extend(buc);
@@ -40,7 +37,6 @@ public class Radix{
         }
       }
       place *= 10;
-        System.out.println(newData);
     }
     for (int x = 0;x < data.length ;x++ ) {
       data[x] = newData.removeFront();
@@ -52,6 +48,7 @@ public class Radix{
     for (int x = 0;x < 25 ;x++ ) {
       a[x] = (int) (Math.random() * 1000);
     } */
+    System.out.println((-312 % 10000) / 1000);
     int[] a = {5,524,312,12332,5126,0,-312, 536, -3, 3234 ,-56, 100};
     System.out.println(Arrays.toString(a));
     radixsort(a);

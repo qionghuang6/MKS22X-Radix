@@ -8,6 +8,7 @@ public class MyLinkedList<E>{
    clear();
  }
  public boolean add(E value){
+   //System.out.println("value: " + value + " size " + size + "start: " + start);
    size++;
    //temporarily holds old end
    Node oldEnd = end;
