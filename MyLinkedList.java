@@ -21,6 +21,9 @@ public class MyLinkedList<E>{
    }
    return true;
  }
+ public int size(){
+   return size;
+ }
  public boolean addFront(E value){
    size++;
    Node oldStart = start;
@@ -44,10 +47,6 @@ public class MyLinkedList<E>{
    }
    return arr;
  }
- public int size()
-{
-  return size;
-}
 private Node prevNode(int index){
    //helper to look for the previous node
    if(index <= 0){

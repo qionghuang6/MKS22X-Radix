@@ -7,12 +7,15 @@ public class Radix{
     }
     boolean completed = false;
     int place = 1;
+    MyLinkedList<Integer> newData= new MyLinkedList();
+    for (int num: data) {
+      newData.add(num);
+    }
     while(!completed){
       completed = true;
-      for(int num: data){
+      for(int a = 0; a < data.length; a++){
+        int num = newData.removeFront();
         int index = (Math.abs(num) % (10 * place)) / place;
-        System.out.println(index);
-        //System.out.println("INDEX" + index);
         if(num < 0){
           buckets[index].addFront(num);
         } else{
@@ -22,17 +25,24 @@ public class Radix{
           completed = false;
         }
       }
-      System.out.println(Arrays.toString(buckets));
-      MyLinkedList<Integer> newData= new MyLinkedList();
       for (MyLinkedList<Integer> buc: buckets ) {
-        newData.extend(buc);
-        System.out.println(newData);
-      }
-      //System.out.println(newData);
-      for (int x = 0;x < data.length ;x++ ) {
-        data[x] = newData.removeFront();
+        if(!completed){
+          newData.extend(buc);
+        } else{
+          while(buc.size() > 0){
+            int temp = buc.removeFront();
+            if(temp < 0){
+              newData.addFront(temp);
+            } else{
+              newData.add(temp);
+            }
+          }
+        }
       }
       place *= 10;
+    }
+    for (int x = 0;x < data.length ;x++ ) {
+      data[x] = newData.removeFront();
     }
   }
   public static void main(String[] args) {
