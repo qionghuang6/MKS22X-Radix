@@ -2,6 +2,7 @@ import java.util.*;
 public class MyLinkedList<E>{
  private Node start,end;
  private int size;
+ @SuppressWarnings("unchecked")
  public MyLinkedList(){
    //sets up instance variables, start and end dont exist yet
    int size = 0;

@@ -17,7 +17,7 @@ public class Radix{
         int num = newData.removeFront();
         int index = (Math.abs(num) % (10 * place)) / place;
           buckets[index].add(num);
-        if(Math.abs(num) / place > 10){
+        if(Math.abs(num) / place > 1){
           completed = false;
         }
       }
@@ -48,10 +48,14 @@ public class Radix{
     for (int x = 0;x < 25 ;x++ ) {
       a[x] = (int) (Math.random() * 1000);
     } */
-    System.out.println((-312 % 10000) / 1000);
-    int[] a = {5,524,312,12332,5126,0,-312, 536, -3, 3234 ,-56, 100};
+    //System.out.println(;
+    int[] a = {213,-1000000,-100,-99,-992192};
+    int [] b = Arrays.copyOf(a,a.length);
+    Arrays.sort(b);
     System.out.println(Arrays.toString(a));
     radixsort(a);
     System.out.println(Arrays.toString(a));
-  }
+    System.out.println(Arrays.toString(b));
+    System.out.println(Arrays.equals(a,b));
+    }
 }
